@@ -138,7 +138,7 @@ public partial class @DOFInputActions: IInputActionCollection2, IDisposable
                     ""id"": ""cc35401c-dbf6-4f0e-bac6-d057630919ba"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""InvertVector2(invertX=false)"",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
@@ -156,7 +156,7 @@ public partial class @DOFInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
+                    ""name"": ""Positive"",
                     ""id"": ""6e18986b-e4fb-477c-84e8-fdc1e9dd3e06"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
@@ -167,7 +167,7 @@ public partial class @DOFInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
+                    ""name"": ""Negative"",
                     ""id"": ""0e532b25-41d9-4b79-a797-c70fa9016ed7"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
