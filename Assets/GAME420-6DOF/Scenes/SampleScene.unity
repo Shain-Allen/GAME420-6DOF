@@ -547,7 +547,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shipRb: {fileID: 0}
-  _shipForce: 0
+  _shipLatForce: 10
+  _shipRollForce: 5
 --- !u!1001 &829868565
 PrefabInstance:
   m_ObjectHideFlags: 0

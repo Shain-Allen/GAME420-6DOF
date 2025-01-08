@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 public class ShipController : MonoBehaviour
 {
     [SerializeField] Rigidbody _shipRb;
-    [SerializeField] float _shipLatForce = 10f;
+    [SerializeField] private float _shipLatForce = 10f;
+    [SerializeField] private float _shipRollForce = 5f;
     
     DOFInputActions _dofInputActions;
 
@@ -47,11 +48,12 @@ public class ShipController : MonoBehaviour
     
     private void OnRollMovement(InputAction.CallbackContext ctx)
     {
-        //_shipRb.AddTorque(ctx.ReadValue<>());
+        _shipRb.AddTorque(transform.forward * ctx.ReadValue<float>() * _shipRollForce);
     }
     
     private void OnLook(InputAction.CallbackContext ctx)
     {
-        throw new NotImplementedException();
+        _shipRb.AddTorque(transform.up * ctx.ReadValue<Vector2>().x * _shipRollForce);
+        _shipRb.AddTorque(transform.right * ctx.ReadValue<Vector2>().y * _shipRollForce);
     }
 }
