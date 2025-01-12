@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 
 public class ShipController : MonoBehaviour
 {
-    [SerializeField] Rigidbody _shipRb;
-    DOFInputActions _dofInputActions;
+    private Rigidbody _shipRb;
+    private DOFInputActions _dofInputActions;
     [SerializeField] private float _shipLatForce = 10f;
     [SerializeField] private float _shipRollForce = 5f;
     [SerializeField] private float _shipYawForce = 5f;
@@ -52,9 +52,9 @@ public class ShipController : MonoBehaviour
         _dofInputActions.Player.Look.canceled -= OnLook;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        _shipRb.AddForce(transform.TransformDirection(_shipLatInput * (_shipLatForce * Time.deltaTime)));
+        _shipRb.AddForce(transform.TransformDirection(_shipLatInput * _shipLatForce));
         _shipRb.AddTorque(transform.forward * (_shipRollInput * _shipRollForce));
         _shipRb.AddTorque(transform.up * (_shipLookInput.x * _shipPitchForce));
         _shipRb.AddTorque(transform.right * (_shipLookInput.y * _shipYawForce));
