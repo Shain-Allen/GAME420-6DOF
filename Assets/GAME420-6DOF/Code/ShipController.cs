@@ -11,6 +11,9 @@ public class ShipController : MonoBehaviour
     [SerializeField] private float _shipYawForce = 5f;
     [SerializeField] private float _shipPitchForce = 5f;
 
+    [SerializeField] private float _movementAngleDamping = 2f;
+    [SerializeField] private float _stationaryAngleDamping = 30f;
+
     private Vector3 _shipLatInput;
     private float _shipRollInput;
     private Vector2 _shipLookInput;
@@ -69,10 +72,30 @@ public class ShipController : MonoBehaviour
     {
         Debug.Log(ctx.ReadValue<float>());
         _shipRollInput = ctx.ReadValue<float>();
+        
+        //Debug.Log(ctx.phase);
+
+        if (ctx.performed)
+        {
+            _shipRb.angularDamping = _movementAngleDamping;
+        }
+        else if (ctx.canceled)
+        {
+            _shipRb.angularDamping = _stationaryAngleDamping;
+        }
     }
     
     private void OnLook(InputAction.CallbackContext ctx)
     {
         _shipLookInput = ctx.ReadValue<Vector2>();
+        
+        if (ctx.performed)
+        {
+            _shipRb.angularDamping = _movementAngleDamping;
+        }
+        else if (ctx.canceled)
+        {
+            _shipRb.angularDamping = _stationaryAngleDamping;
+        }
     }
 }
