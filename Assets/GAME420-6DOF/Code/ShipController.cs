@@ -35,7 +35,7 @@ public class ShipController : MonoBehaviour
         _dofInputActions.Player.LatMovement.performed += OnLatMovement;
         _dofInputActions.Player.LatMovement.canceled += OnLatMovement;
         _dofInputActions.Player.RollMovement.performed += OnRollMovement;
-        _dofInputActions.Player.RollMovement.canceled += OnLatMovement;
+        _dofInputActions.Player.RollMovement.canceled += OnRollMovement;
         _dofInputActions.Player.Look.performed += OnLook;
         _dofInputActions.Player.Look.canceled += OnLook;
     }
@@ -50,7 +50,7 @@ public class ShipController : MonoBehaviour
         _dofInputActions.Player.LatMovement.performed -= OnLatMovement;
         _dofInputActions.Player.LatMovement.canceled -= OnLatMovement;
         _dofInputActions.Player.RollMovement.performed -= OnRollMovement;
-        _dofInputActions.Player.RollMovement.canceled -= OnLatMovement;
+        _dofInputActions.Player.RollMovement.canceled -= OnRollMovement;
         _dofInputActions.Player.Look.performed -= OnLook;
         _dofInputActions.Player.Look.canceled -= OnLook;
     }
@@ -72,8 +72,6 @@ public class ShipController : MonoBehaviour
     {
         Debug.Log(ctx.ReadValue<float>());
         _shipRollInput = ctx.ReadValue<float>();
-        
-        //Debug.Log(ctx.phase);
 
         if (ctx.performed)
         {
