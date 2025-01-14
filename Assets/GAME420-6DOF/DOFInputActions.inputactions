@@ -121,6 +121,83 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Left Stick - T.1600M",
+                    "id": "c062c7e7-3269-4ef1-a952-11f9f11a1ff6",
+                    "path": "3DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LatMovement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "3393875d-2c32-49ad-893d-82aad3777360",
+                    "path": "<HID::Thrustmaster T.16000M>/hat/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
+                    "action": "LatMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "f445ed6f-fc43-44cb-82b8-5d834b8aad3b",
+                    "path": "<HID::Thrustmaster T.16000M>{leftHand}/hat/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
+                    "action": "LatMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "260e0e57-74cf-4132-b774-b475fdfe6a12",
+                    "path": "<HID::Thrustmaster T.16000M>{leftHand}/stick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
+                    "action": "LatMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "133ca07d-86da-42ef-a86a-17f350a276e1",
+                    "path": "<HID::Thrustmaster T.16000M>{leftHand}/stick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
+                    "action": "LatMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "forward",
+                    "id": "757714e5-531c-4db5-837a-d3401e969539",
+                    "path": "<Joystick>{leftHand}/stick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
+                    "action": "LatMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "backward",
+                    "id": "67ace9ff-6526-4ccb-bf70-49f792486969",
+                    "path": "<Joystick>{leftHand}/stick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
+                    "action": "LatMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "Keyboard",
                     "id": "84504d3c-f14f-4189-abeb-5abd2f4a9542",
                     "path": "1DAxis",
@@ -156,7 +233,7 @@
                 {
                     "name": "",
                     "id": "c78e1589-79b7-42d1-953b-d402cf83c3c5",
-                    "path": "<HID::Thrustmaster T.16000M>/stick/x",
+                    "path": "<HID::Thrustmaster T.16000M>{rightHand}/stick/x",
                     "interactions": "",
                     "processors": "AxisDeadzone,Invert",
                     "groups": ";Joystick",
@@ -178,7 +255,7 @@
                 {
                     "name": "",
                     "id": "af13b7c8-8b51-49bf-a50d-3fc4585effd7",
-                    "path": "<HID::Thrustmaster T.16000M>/stick/y",
+                    "path": "<HID::Thrustmaster T.16000M>{rightHand}/stick/y",
                     "interactions": "",
                     "processors": "AxisDeadzone,Scale(factor=50)",
                     "groups": ";Joystick",
@@ -200,7 +277,7 @@
                 {
                     "name": "",
                     "id": "4cdb2697-9ebd-4b61-b1cc-97384ee48bc6",
-                    "path": "<HID::Thrustmaster T.16000M>/rz",
+                    "path": "<HID::Thrustmaster T.16000M>{rightHand}/rz",
                     "interactions": "",
                     "processors": "AxisDeadzone,Scale(factor=50)",
                     "groups": ";Joystick",
