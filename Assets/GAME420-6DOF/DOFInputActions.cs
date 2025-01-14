@@ -46,10 +46,19 @@ public partial class @DOFInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Look"",
+                    ""name"": ""PitchMovement"",
                     ""type"": ""Value"",
-                    ""id"": ""5b501822-2b35-4a05-89f4-1d323559377b"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""id"": ""944fe88a-5d03-4496-b4c4-8784cb422cd1"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""YawMovement"",
+                    ""type"": ""Value"",
+                    ""id"": ""a791fafc-21fc-46fa-b8be-637a656d92a8"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -134,17 +143,6 @@ public partial class @DOFInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""cc35401c-dbf6-4f0e-bac6-d057630919ba"",
-                    ""path"": ""<Mouse>/delta"",
-                    ""interactions"": """",
-                    ""processors"": ""InvertVector2(invertX=false)"",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": ""Keyboard"",
                     ""id"": ""84504d3c-f14f-4189-abeb-5abd2f4a9542"",
                     ""path"": ""1DAxis"",
@@ -176,6 +174,61 @@ public partial class @DOFInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""RollMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c78e1589-79b7-42d1-953b-d402cf83c3c5"",
+                    ""path"": ""<HID::Thrustmaster T.16000M>/stick/x"",
+                    ""interactions"": """",
+                    ""processors"": ""AxisDeadzone"",
+                    ""groups"": "";Joystick"",
+                    ""action"": ""RollMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5339b201-7d73-4a58-bece-7a69c6a5a0de"",
+                    ""path"": ""<Mouse>/delta/y"",
+                    ""interactions"": """",
+                    ""processors"": ""Invert"",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""PitchMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""af13b7c8-8b51-49bf-a50d-3fc4585effd7"",
+                    ""path"": ""<HID::Thrustmaster T.16000M>/stick/y"",
+                    ""interactions"": """",
+                    ""processors"": ""AxisDeadzone"",
+                    ""groups"": "";Joystick"",
+                    ""action"": ""PitchMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d6d12852-5fbd-45bd-bbe1-34b8c1cc0240"",
+                    ""path"": ""<Mouse>/delta/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""YawMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4cdb2697-9ebd-4b61-b1cc-97384ee48bc6"",
+                    ""path"": ""<HID::Thrustmaster T.16000M>/rz"",
+                    ""interactions"": """",
+                    ""processors"": ""AxisDeadzone"",
+                    ""groups"": "";Joystick"",
+                    ""action"": ""YawMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -763,7 +816,8 @@ public partial class @DOFInputActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_LatMovement = m_Player.FindAction("LatMovement", throwIfNotFound: true);
         m_Player_RollMovement = m_Player.FindAction("RollMovement", throwIfNotFound: true);
-        m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+        m_Player_PitchMovement = m_Player.FindAction("PitchMovement", throwIfNotFound: true);
+        m_Player_YawMovement = m_Player.FindAction("YawMovement", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -845,14 +899,16 @@ public partial class @DOFInputActions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_LatMovement;
     private readonly InputAction m_Player_RollMovement;
-    private readonly InputAction m_Player_Look;
+    private readonly InputAction m_Player_PitchMovement;
+    private readonly InputAction m_Player_YawMovement;
     public struct PlayerActions
     {
         private @DOFInputActions m_Wrapper;
         public PlayerActions(@DOFInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @LatMovement => m_Wrapper.m_Player_LatMovement;
         public InputAction @RollMovement => m_Wrapper.m_Player_RollMovement;
-        public InputAction @Look => m_Wrapper.m_Player_Look;
+        public InputAction @PitchMovement => m_Wrapper.m_Player_PitchMovement;
+        public InputAction @YawMovement => m_Wrapper.m_Player_YawMovement;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -868,9 +924,12 @@ public partial class @DOFInputActions: IInputActionCollection2, IDisposable
             @RollMovement.started += instance.OnRollMovement;
             @RollMovement.performed += instance.OnRollMovement;
             @RollMovement.canceled += instance.OnRollMovement;
-            @Look.started += instance.OnLook;
-            @Look.performed += instance.OnLook;
-            @Look.canceled += instance.OnLook;
+            @PitchMovement.started += instance.OnPitchMovement;
+            @PitchMovement.performed += instance.OnPitchMovement;
+            @PitchMovement.canceled += instance.OnPitchMovement;
+            @YawMovement.started += instance.OnYawMovement;
+            @YawMovement.performed += instance.OnYawMovement;
+            @YawMovement.canceled += instance.OnYawMovement;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -881,9 +940,12 @@ public partial class @DOFInputActions: IInputActionCollection2, IDisposable
             @RollMovement.started -= instance.OnRollMovement;
             @RollMovement.performed -= instance.OnRollMovement;
             @RollMovement.canceled -= instance.OnRollMovement;
-            @Look.started -= instance.OnLook;
-            @Look.performed -= instance.OnLook;
-            @Look.canceled -= instance.OnLook;
+            @PitchMovement.started -= instance.OnPitchMovement;
+            @PitchMovement.performed -= instance.OnPitchMovement;
+            @PitchMovement.canceled -= instance.OnPitchMovement;
+            @YawMovement.started -= instance.OnYawMovement;
+            @YawMovement.performed -= instance.OnYawMovement;
+            @YawMovement.canceled -= instance.OnYawMovement;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1068,7 +1130,8 @@ public partial class @DOFInputActions: IInputActionCollection2, IDisposable
     {
         void OnLatMovement(InputAction.CallbackContext context);
         void OnRollMovement(InputAction.CallbackContext context);
-        void OnLook(InputAction.CallbackContext context);
+        void OnPitchMovement(InputAction.CallbackContext context);
+        void OnYawMovement(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

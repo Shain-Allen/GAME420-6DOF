@@ -13,9 +13,15 @@ public class ShipController : MonoBehaviour
 
     [SerializeField] private float _movementAngleDamping = 2f;
     [SerializeField] private float _stationaryAngleDamping = 30f;
+    
+    private bool _isRolling = false;
+    private bool _isYaw = false;
+    private bool _isPitch = false;
 
     private Vector3 _shipLatInput;
     private float _shipRollInput;
+    private float _shipYawInput;
+    private float _shipPitchInput;
     private Vector2 _shipLookInput;
     
     private void Awake()
@@ -36,8 +42,10 @@ public class ShipController : MonoBehaviour
         _dofInputActions.Player.LatMovement.canceled += OnLatMovement;
         _dofInputActions.Player.RollMovement.performed += OnRollMovement;
         _dofInputActions.Player.RollMovement.canceled += OnRollMovement;
-        _dofInputActions.Player.Look.performed += OnLook;
-        _dofInputActions.Player.Look.canceled += OnLook;
+        _dofInputActions.Player.PitchMovement.performed += OnPitchMovement;
+        _dofInputActions.Player.PitchMovement.canceled += OnPitchMovement;
+        _dofInputActions.Player.YawMovement.performed += OnYawMovement;
+        _dofInputActions.Player.YawMovement.canceled += OnYawMovement;
     }
     
     private void OnDisable()
@@ -51,16 +59,30 @@ public class ShipController : MonoBehaviour
         _dofInputActions.Player.LatMovement.canceled -= OnLatMovement;
         _dofInputActions.Player.RollMovement.performed -= OnRollMovement;
         _dofInputActions.Player.RollMovement.canceled -= OnRollMovement;
-        _dofInputActions.Player.Look.performed -= OnLook;
-        _dofInputActions.Player.Look.canceled -= OnLook;
+        _dofInputActions.Player.PitchMovement.performed -= OnPitchMovement;
+        _dofInputActions.Player.PitchMovement.canceled -= OnPitchMovement;
+        _dofInputActions.Player.YawMovement.performed -= OnYawMovement;
+        _dofInputActions.Player.YawMovement.canceled -= OnYawMovement;
     }
 
     private void FixedUpdate()
     {
         _shipRb.AddForce(transform.TransformDirection(_shipLatInput * _shipLatForce));
-        _shipRb.AddTorque(transform.forward * (_shipRollInput * _shipRollForce));
-        _shipRb.AddTorque(transform.up * (_shipLookInput.x * _shipPitchForce));
-        _shipRb.AddTorque(transform.right * (_shipLookInput.y * _shipYawForce));
+
+        Vector3 combinedTorque = transform.forward * (_shipRollInput * _shipRollForce);
+        combinedTorque += transform.up * (_shipYawInput * _shipPitchForce);
+        combinedTorque += transform.right * (_shipPitchInput * _shipYawForce);
+        
+        _shipRb.AddTorque(combinedTorque);
+
+        if (_isRolling || _isYaw || _isPitch)
+        {
+            _shipRb.angularDamping = _movementAngleDamping;
+        }
+        else
+        {
+            _shipRb.angularDamping = _stationaryAngleDamping;
+        }
     }
 
     private void OnLatMovement(InputAction.CallbackContext ctx)
@@ -70,30 +92,43 @@ public class ShipController : MonoBehaviour
     
     private void OnRollMovement(InputAction.CallbackContext ctx)
     {
-        Debug.Log(ctx.ReadValue<float>());
         _shipRollInput = ctx.ReadValue<float>();
 
         if (ctx.performed)
         {
-            _shipRb.angularDamping = _movementAngleDamping;
+            _isRolling = true;
         }
         else if (ctx.canceled)
         {
-            _shipRb.angularDamping = _stationaryAngleDamping;
+            _isRolling = false;
         }
     }
-    
-    private void OnLook(InputAction.CallbackContext ctx)
+
+    private void OnPitchMovement(InputAction.CallbackContext ctx)
     {
-        _shipLookInput = ctx.ReadValue<Vector2>();
-        
+        _shipPitchInput = ctx.ReadValue<float>();
+
         if (ctx.performed)
         {
-            _shipRb.angularDamping = _movementAngleDamping;
+            _isPitch = true;
         }
         else if (ctx.canceled)
         {
-            _shipRb.angularDamping = _stationaryAngleDamping;
+            _isPitch = false;
+        }
+    }
+
+    private void OnYawMovement(InputAction.CallbackContext ctx)
+    {
+        _shipYawInput = ctx.ReadValue<float>();
+
+        if (ctx.performed)
+        {
+            _isYaw = true;
+        }
+        else if (ctx.canceled)
+        {
+            _isYaw = false;
         }
     }
 }
