@@ -200,7 +200,7 @@ public partial class @DOFInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""forward"",
                     ""id"": ""757714e5-531c-4db5-837a-d3401e969539"",
-                    ""path"": ""<Joystick>{leftHand}/stick/up"",
+                    ""path"": ""<HID::Thrustmaster T.16000M>{leftHand}/stick/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Joystick"",
@@ -211,7 +211,7 @@ public partial class @DOFInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""backward"",
                     ""id"": ""67ace9ff-6526-4ccb-bf70-49f792486969"",
-                    ""path"": ""<Joystick>{leftHand}/stick/down"",
+                    ""path"": ""<HID::Thrustmaster T.16000M>{leftHand}/stick/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Joystick"",
@@ -255,7 +255,7 @@ public partial class @DOFInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c78e1589-79b7-42d1-953b-d402cf83c3c5"",
-                    ""path"": ""<HID::Thrustmaster T.16000M>{leftHand}/stick/x"",
+                    ""path"": ""<HID::Thrustmaster T.16000M>{rightHand}/stick/x"",
                     ""interactions"": """",
                     ""processors"": ""AxisDeadzone,Invert"",
                     ""groups"": "";Joystick"",
@@ -299,7 +299,7 @@ public partial class @DOFInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4cdb2697-9ebd-4b61-b1cc-97384ee48bc6"",
-                    ""path"": ""<HID::Thrustmaster T.16000M>{rightHand}/stick/x"",
+                    ""path"": ""<HID::Thrustmaster T.16000M>{rightHand}/rz"",
                     ""interactions"": """",
                     ""processors"": ""AxisDeadzone,Scale(factor=50)"",
                     ""groups"": "";Joystick"",
