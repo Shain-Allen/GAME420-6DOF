@@ -134,7 +134,7 @@
                 {
                     "name": "up",
                     "id": "3393875d-2c32-49ad-893d-82aad3777360",
-                    "path": "<HID::Thrustmaster T.16000M>/hat/up",
+                    "path": "<HID::Thrustmaster T.16000M>{rightHand}/hat/up",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Joystick",
@@ -145,7 +145,7 @@
                 {
                     "name": "down",
                     "id": "f445ed6f-fc43-44cb-82b8-5d834b8aad3b",
-                    "path": "<HID::Thrustmaster T.16000M>{leftHand}/hat/down",
+                    "path": "<HID::Thrustmaster T.16000M>{rightHand}/hat/down",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Joystick",
@@ -156,7 +156,7 @@
                 {
                     "name": "left",
                     "id": "260e0e57-74cf-4132-b774-b475fdfe6a12",
-                    "path": "<HID::Thrustmaster T.16000M>{leftHand}/hat/left",
+                    "path": "<HID::Thrustmaster T.16000M>{rightHand}/hat/left",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Joystick",
@@ -167,7 +167,7 @@
                 {
                     "name": "right",
                     "id": "133ca07d-86da-42ef-a86a-17f350a276e1",
-                    "path": "<HID::Thrustmaster T.16000M>{leftHand}/hat/right",
+                    "path": "<HID::Thrustmaster T.16000M>{rightHand}/hat/right",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Joystick",
